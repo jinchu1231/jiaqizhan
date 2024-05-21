@@ -28,6 +28,7 @@
         <module>jnpf-visualdata</module>
         <module>jnpf-app</module>
         <module>jnpf-form</module>
+        <module>jnpf-gas</module>
         <module>jnpf-permission</module>
         <module>jnpf-scheduletask</module>
         <module>jnpf-message</module>

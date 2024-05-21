@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jnpf.engine.mapper.FlowTaskMapper">
+
+    <resultMap id="FlowTask" type="jnpf.engine.model.flowtask.FlowTaskListModel">
+        <id column="F_Id" property="id"/>
+        <result column="F_ProcessId" property="processId"/>
+        <result column="F_EnCode" property="enCode"/>
+        <result column="F_FullName" property="fullName"/>
+        <result column="F_FlowUrgent" property="flowUrgent"/>
+        <result column="F_FlowId" property="flowId"/>
+        <result column="F_FlowCode" property="flowCode"/>
+        <result column="F_FlowName" property="flowName"/>
+        <result column="F_FlowCategory" property="flowCategory"/>
+        <result column="F_StartTime" property="startTime"/>
+        <result column="F_EndTime" property="endTime"/>
+        <result column="F_ThisStep" property="thisStep"/>
+        <result column="F_ThisStepId" property="thisStepId"/>
+        <result column="F_Status" property="status"/>
+        <result column="F_Completion" property="completion"/>
+        <result column="F_CreatorUserId" property="creatorUserId"/>
+        <result column="F_CreatorTime" property="creatorTime"/>
+        <result column="F_HandleId" property="handleId"/>
+        <result column="F_NodeName" property="nodeName"/>
+        <result column="F_NodePropertyJson" property="approversProperties"/>
+        <result column="F_Description" property="description"/>
+        <result column="F_FlowVersion" property="flowVersion"/>
+        <result column="F_DelegateUser" property="delegateUser"/>
+        <result column="F_TemplateId" property="templateId"/>
+        <result column="F_CirculateId" property="circulateId"/>
+        <result column="F_Icon" property="icon"/>
+    </resultMap>
+
+    <select id="getTrialList" parameterType="map" resultMap="FlowTask">
+        SELECT
+        b.F_Id AS F_Id,
+        c.F_Process_Id AS F_ProcessId,
+        c.F_En_Code AS F_EnCode,
+        c.F_Start_Time AS F_StartTime,
+        c.F_Full_Name AS F_FullName,
+        c.F_Flow_Urgent AS F_FlowUrgent,
+        c.F_Flow_Id AS F_FlowId,
+        c.F_Flow_Code AS F_FlowCode,
+        c.F_Flow_Name AS F_FlowName,
+        c.F_Flow_Category AS F_FlowCategory,
+        c.F_End_Time AS F_EndTime,
+        b.F_Node_Name AS F_ThisStep,
+        b.F_Task_Node_Id AS F_ThisStepId,
+        b.F_Handle_Status AS F_Status,
+        c.F_Completion,
+        c.F_Creator_User_Id AS F_CreatorUserId,
+        b.F_Handle_Time AS F_CreatorTime,
+        c.F_Last_Modify_User_Id AS F_LastModifyUserId,
+        c.F_Last_Modify_Time AS F_LastModifyTime,
+        b.F_Handle_Id AS F_HandleId,
+        d.F_Handle_Id AS F_DelegateUser
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        F_Task_Id AS TaskId,
+        F_Task_Node_Id AS TaskNodeId,
+        F_Handle_Id AS HandleId,
+        max( F_Handle_Time ) AS HandleTime
+        FROM
+        flow_task_operator_record
+        WHERE
+        (
+        F_Handle_Status IN ( 0, 1, 10 )
+        AND F_Handle_Id = #{map.handleId}
+        )
+        AND F_Task_Operator_Id IS NOT NULL
+        GROUP BY F_Task_Id,F_Task_Node_Id,F_Handle_Id
+        ) MergeTable
+        ) a
+        LEFT JOIN flow_task_operator_record b ON (
+        (
+        a.TaskId = b.F_Task_Id
+        AND a.TaskNodeId = b.F_Task_Node_Id
+        )
+        AND ( a.HandleId = b.F_Handle_Id )
+        )
+        LEFT JOIN flow_task c ON  b.F_Task_Id = c.F_Id
+        LEFT JOIN flow_task_operator d ON  b.F_Task_Operator_Id = d.F_Id
+        WHERE
+        ( a.HandleTime = b.F_Handle_Time AND  b.F_Handle_Status IN ( 0, 1, 10 ) )
+        AND  b.F_Task_Operator_Id IS NOT NULL
+        AND  b.F_Handle_Id = #{map.handleId}
+        <if test="map.keyWord != null and map.keyWord!=''">
+            AND (c.F_En_Code like #{map.keyWord} or c.F_Full_Name like #{map.keyWord})
+        </if>
+
+        <if test="map.idList != null and map.idList.size()>0">
+            AND b.F_Id in
+            <foreach collection="map.idList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.flowCategory != null and map.flowCategory.size()>0">
+            AND c.F_Flow_Category in
+            <foreach collection="map.flowCategory" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.creatorUserId != null and map.creatorUserId!=''">
+            AND c.F_Creator_User_Id = #{map.creatorUserId}
+        </if>
+
+        <if test="map.templateId != null and map.templateId!=''">
+            AND c.F_Template_Id = #{map.templateId}
+        </if>
+
+        <if test="map.flowList != null and map.flowList.size()>0">
+            AND c.F_Flow_Id in
+            <foreach collection="map.flowList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.flowUrgent != null and map.flowUrgent!=''">
+            AND c.F_Flow_Urgent = #{map.flowUrgent}
+        </if>
+        Order by b.F_Handle_Time DESC
+    </select>
+
+    <select id="getCirculateList" parameterType="map" resultMap="FlowTask">
+        SELECT
+        t.F_Id,
+        t.F_Process_Id AS F_ProcessId,
+        t.F_En_Code AS F_EnCode,
+        t.F_Full_Name AS F_FullName,
+        t.F_Flow_Urgent AS F_FlowUrgent,
+        t.F_Flow_Id AS F_FlowId,
+        t.F_Flow_Code AS F_FlowCode,
+        t.F_Flow_Name AS F_FlowName,
+        t.F_Flow_Category AS F_FlowCategory,
+        t.F_Start_Time AS F_StartTime,
+        t.F_End_Time AS F_EndTime,
+        c.F_Node_Name AS F_ThisStep,
+        c.F_Task_Node_Id AS F_ThisStepId,
+        c.F_Id AS F_CirculateId,
+        t.F_Status,
+        t.F_Completion,
+        e.F_Icon,
+        t.F_Creator_User_Id AS F_CreatorUserId,
+        c.F_Creator_Time AS F_CreatorTime,
+        t.F_Last_Modify_User_Id AS F_LastModifyUserId,
+        t.F_Last_Modify_Time  AS F_LastModifyTime
+        FROM
+        flow_task t
+        LEFT JOIN flow_task_circulate c ON c.F_Task_Id = t.F_Id
+        LEFT JOIN flow_template e on t.F_Template_Id = e.F_Id
+        WHERE
+        c.F_Object_Id = #{map.objectId}
+        <if test="map.keyWord != null and map.keyWord!=''">
+            AND (t.F_En_Code like #{map.keyWord} or t.F_Full_Name like #{map.keyWord})
+        </if>
+
+        <if test="map.idList != null and map.idList.size()>0">
+            AND c.F_Id in
+            <foreach collection="map.idList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.templateId != null and map.templateId!=''">
+            AND t.F_Template_Id = #{map.templateId}
+        </if>
+
+        <if test="map.flowList != null and map.flowList.size()>0">
+            AND t.F_Flow_Id in
+            <foreach collection="map.flowList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.flowCategory != null and map.flowCategory.size()>0">
+            AND t.F_Flow_Category in
+            <foreach collection="map.flowCategory" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.creatorUserId != null and map.creatorUserId!=''">
+            AND t.F_Creator_User_Id = #{map.creatorUserId}
+        </if>
+
+        <if test="map.flowUrgent != null and map.flowUrgent!=''">
+            AND t.F_Flow_Urgent = #{map.flowUrgent}
+        </if>
+        Order by c.F_Creator_Time DESC
+    </select>
+
+    <select id="getWaitList" parameterType="map" resultMap="FlowTask">
+        SELECT
+        o.F_Id AS F_Id,
+        t.F_Process_Id AS F_ProcessId,
+        t.F_En_Code AS F_EnCode,
+        t.F_Full_Name AS F_FullName,
+        t.F_Flow_Urgent AS F_FlowUrgent,
+        t.F_Flow_Id AS F_FlowId,
+        t.F_Flow_Code AS F_FlowCode,
+        t.F_Flow_Name AS F_FlowName,
+        t.F_Flow_Category AS F_FlowCategory,
+        t.F_Start_Time AS F_StartTime,
+        t.F_End_Time AS F_EndTime,
+        o.F_Node_Name AS F_ThisStep,
+        o.F_Task_Node_Id AS F_ThisStepId,
+        t.F_Status,
+        t.F_Completion,
+        t.F_Creator_User_Id AS F_CreatorUserId,
+        o.F_Creator_Time AS F_CreatorTime,
+        o.F_Handle_Id AS F_HandleId,
+        t.F_Last_Modify_User_Id AS F_LastModifyUserId,
+        t.F_Template_Id AS F_TemplateId,
+        t.F_Last_Modify_Time AS F_LastModifyTime,
+        o.F_Node_Name AS F_NodeName,
+        t.F_Flow_Version AS F_FlowVersion
+        FROM
+        flow_task_operator o
+        LEFT JOIN flow_task t ON o.F_Task_Id = t.F_Id
+        WHERE
+        o.F_Completion = 0
+        AND t.F_Status = 1
+        AND o.F_State = '0'
+        <if test="map.handleId != null and map.handleId.size()>0">
+            AND (
+            o.F_Handle_Id in
+            <foreach collection="map.handleId" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+
+            <if test="map.delegateList != null and map.delegateList.size()>0">
+                OR (
+                <foreach collection="map.delegateList" item="item" index="index">
+                    ( t.F_Template_Id in
+                    <foreach collection="item.templateId" item="value" separator="," open="(" close=")">
+                        #{value}
+                    </foreach>
+                    and o.F_Handle_Id = #{item.user}
+                    )
+                    <if test="index != map.delegateList.size()-1">
+                        OR
+                    </if>
+                </foreach>
+                )
+            </if>
+            )
+        </if>
+
+        <if test="map.keyWord != null and map.keyWord!=''">
+            AND (t.F_En_Code like #{map.keyWord} or t.F_Full_Name like #{map.keyWord})
+        </if>
+
+        <if test="map.idList != null and map.idList.size()>0">
+            AND o.F_Id in
+            <foreach collection="map.idList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.flowCategory != null and map.flowCategory.size()>0">
+            AND t.F_Flow_Category in
+            <foreach collection="map.flowCategory" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.creatorUserId != null and map.creatorUserId!=''">
+            AND t.F_Creator_User_Id = #{map.creatorUserId}
+        </if>
+
+        <if test="map.nodeCode != null and map.nodeCode!=''">
+            AND o.F_Node_Code = #{map.nodeCode}
+        </if>
+
+        <if test="map.templateId != null and map.templateId!=''">
+            AND t.F_Template_Id = #{map.templateId}
+        </if>
+
+        <if test="map.flowList != null and map.flowList.size()>0">
+            AND t.F_Flow_Id in
+            <foreach collection="map.flowList" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="map.isBatch != null and map.isBatch!=''">
+            AND t.F_Is_Batch = #{map.isBatch}
+        </if>
+
+        <if test="map.flowUrgent != null and map.flowUrgent!=''">
+            AND t.F_Flow_Urgent = #{map.flowUrgent}
+        </if>
+        Order by o.F_Creator_Time DESC
+    </select>
+
+</mapper>

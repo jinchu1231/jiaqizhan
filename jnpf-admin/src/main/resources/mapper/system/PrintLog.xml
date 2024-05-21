@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jnpf.base.mapper.PrintLogMapper">
+
+    <select id="getListId" resultType="java.lang.String">
+        SELECT bpl.f_id FROM base_print_log bpl LEFT JOIN base_user bu ON bu.f_id = bpl.f_creator_user_id
+        WHERE 1 = 1
+        <if test="printId != null and printId !=''">
+            AND bpl.f_print_id = #{printId}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND bpl.f_print_title LIKE #{keyword}
+            AND (bu.f_account LIKE #{keyword} OR bu.f_real_name LIKE #{keyword})
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jnpf.base.mapper.PortalManageMapper">
+
+    <sql id="selectPages">
+        SELECT
+        <!-- 门户管理表 -->
+        bpm.f_id id,
+        bpm.f_enabled_mark enabledMark,
+        bpm.f_platform platform,
+        bpm.f_description description,
+        bpm.F_Tenant_Id tenantId,
+        bpm.f_sort_code sortCode,
+        bpm.f_system_id systemId,
+        bpm.f_portal_id portalId,
+        bpm.f_creator_time creatorTime,
+        bpm.f_last_modify_time lastModifyTime,
+        <!-- 门户表 -->
+        bp.f_category categoryId,
+        bp.f_full_name portalName,
+        bd.f_full_name categoryName,
+        <!-- 用户表 -->
+        us.F_Real_Name createUserName,
+        us.F_Account createUserAccount,
+        us2.F_Real_Name modifyUserName,
+        us2.F_Account modifyUserAccount
+        FROM
+        base_portal_manage bpm
+        LEFT JOIN
+        base_portal bp
+        ON
+        bpm.f_portal_id = bp.f_id
+        LEFT JOIN
+        base_user us
+        ON
+        bpm.F_Creator_User_Id = us.f_id
+        LEFT JOIN
+        base_user us2
+        ON
+        bpm.F_Last_Modify_User_Id = us2.f_id
+        LEFT JOIN
+        base_dictionary_data bd
+        ON bp.f_category = bd.f_id
+        WHERE 1 = 1
+        <if test="pmPage.keyword != null and pmPage.keyword != ''">
+            AND (bp.f_full_name LIKE #{pmPage.keyword} OR bpm.f_description LIKE #{pmPage.keyword})
+        </if>
+        <if test="pmPage.category != null and pmPage.category != ''">
+            AND
+            bp.f_category = #{pmPage.category}
+        </if>
+        <if test="pmPage.enabledMark != null">
+            AND
+            bpm.f_enabled_mark = #{pmPage.enabledMark}
+            <!-- AND bp.f_enabled_mark = #{pmPage.enabledMark} -->
+        </if>
+        <if test="pmPage.platform != null and pmPage.platform != ''">
+            AND
+            bpm.f_platform LIKE #{pmPage.platform}
+        </if>
+        <if test="pmPage.systemId != null and pmPage.systemId != ''">
+            AND
+            bpm.f_system_id = #{pmPage.systemId}
+        </if>
+        <if test="pmPage.state != null and pmPage.state != ''">
+            AND
+            bp.F_state != #{pmPage.state}
+        </if>
+    </sql>
+
+    <select id="selectPortalManageDoPage" resultType="jnpf.base.model.portalManage.PortalManagePageDO" parameterType="jnpf.base.model.portalManage.PortalManagePage">
+        SELECT
+        *
+        FROM (<include refid="selectPages"></include>) TempTable
+        ORDER BY
+        sortCode ASC,
+        creatorTime DESC
+    </select>
+
+    <select id="selectPortalManageDoList" resultType="jnpf.base.model.portalManage.PortalManagePageDO" parameterType="jnpf.base.model.portalManage.PortalManagePage">
+        SELECT
+        *
+        FROM (<include refid="selectPages"></include>) TempTable
+        ORDER BY
+        sortCode ASC,
+        creatorTime DESC
+    </select>
+
+    <select id="selectPortalBySystemIds" resultType="jnpf.base.model.portalManage.PortalManagePageDO" parameterType="java.lang.String">
+        SELECT
+        bpm.f_id id,
+        bpm.f_enabled_mark enabledMark,
+        bpm.f_platform platform,
+        bpm.f_description description,
+        bpm.f_sort_code sortCode,
+        bpm.f_system_id systemId,
+        bpm.f_portal_id portalId,
+        bpm.f_creator_time creatorTime,
+        bpm.f_last_modify_time lastModifyTime,
+        bp.f_category categoryId,
+        bp.f_full_name portalName,
+        bd.f_full_name categoryName
+        FROM
+        base_portal bp
+        LEFT JOIN base_portal_manage bpm ON bpm.f_portal_id = bp.f_id
+        LEFT JOIN base_dictionary_data bd ON bp.f_category = bd.f_id
+        WHERE bpm.f_system_id IN
+        <foreach collection="systemIds"
+                 item="systemId" index="index" separator="," open="(" close=")">
+            #{systemId}
+        </foreach>
+        <if test="collect != null and collect.size > 0">
+            AND bpm.f_id IN
+            <foreach collection="collect"
+                     item="managerId" index="index" separator="," open="(" close=")">
+                #{managerId}
+            </foreach>
+        </if>
+        AND bpm.f_enabled_mark = 1
+        ORDER BY
+        bpm.f_sort_code ASC,
+        bpm.f_creator_time DESC
+    </select>
+</mapper>

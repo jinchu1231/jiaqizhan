@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jnpf.base.mapper.DictionaryDataMapper">
+
+    <sql id="listAll">
+        t.F_Id as id, t.F_ParentId as parentId, t.F_FullName as fullName, t.F_EnCode as enCode, t.F_SimpleSpelling as simpleSpelling, t.F_IsDefault as isDefault, t.F_Description as description,
+        t.F_SortCode as sortCode, t.F_EnabledMark as enabledMark, t.F_CreatorTime as creatorTime, t.F_CreatorUserId as creatorUserId, t.F_LastModifyTime as lastModifyTime, t.F_LastModifyUserId as lastModifyUserId,
+        t.F_DeleteMark as deleteMark, t.F_DeleteTime as deleteTime, t.F_DeleteUserId as deleteUserId, t.F_DictionaryTypeId as dictionaryTypeId
+    </sql>
+
+    <select id="getByTypeDataCode" resultType="jnpf.base.entity.DictionaryDataEntity">
+        select
+        <include refid="listAll"></include>
+        from base_dictionary_type dt
+        inner join base_dictionary_data t on dt.F_Id=t.F_DictionaryTypeId
+        where dt.F_EnCode=#{typeCode} and t.F_EnCode=#{dataCode}
+    </select>
+
+</mapper>

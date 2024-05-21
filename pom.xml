@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.jnpf</groupId>
+        <artifactId>jnpf-common</artifactId>
+        <version>3.6.0-RELEASE</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.jnpf</groupId>
+    <artifactId>jnpf-java-boot</artifactId>
+    <packaging>pom</packaging>
+    <version>3.6.0-RELEASE</version>
+
+    <modules>
+        <module>jnpf-admin</module>
+        <module>jnpf-oauth</module>
+        <module>jnpf-system</module>
+        <module>jnpf-public/jnpf-common-all</module>
+        <module>jnpf-example</module>
+        <module>jnpf-extend</module>
+        <module>jnpf-visualdev</module>
+        <module>jnpf-workflow</module>
+        <module>jnpf-file</module>
+        <module>jnpf-exception</module>
+        <module>jnpf-visualdata</module>
+        <module>jnpf-app</module>
+        <module>jnpf-form</module>
+        <module>jnpf-permission</module>
+        <module>jnpf-scheduletask</module>
+        <module>jnpf-message</module>
+        <module>jnpf-public/jnpf-provider</module>
+        <module>jnpf-public/jnpf-generater-base</module>
+    </modules>
+
+    <properties>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+
+</project>

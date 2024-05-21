@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jnpf-permission</artifactId>
+        <groupId>com.jnpf</groupId>
+        <version>3.6.0-RELEASE</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jnpf-permission-biz</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.jnpf</groupId>
+            <artifactId>jnpf-provider</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- 第三方登录-->
+        <dependency>
+            <groupId>me.zhyd.oauth</groupId>
+            <artifactId>JustAuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jnpf</groupId>
+            <artifactId>jnpf-common-connector</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jnpf</groupId>
+            <artifactId>jnpf-oauth-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jnpf</groupId>
+            <artifactId>jnpf-system-biz</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -1,43 +1,48 @@
-[2024-05-21 09:04:37.854] [WARN ] [SpringApplicationShutdownHook] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown
-[2024-05-21 09:06:22.358] [WARN ] [main] [org.apache.catalina.loader.WebappClassLoaderBase] [?] [?] - The web application [ROOT] appears to have started a thread named [Druid-ConnectionPool-Create-1043090763] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.net.PlainSocketImpl.socketConnect(Native Method)
- java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
- java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
- java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
- java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
- java.net.Socket.connect(Socket.java:589)
- com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
- com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
- com.mysql.cj.NativeSession.connect(NativeSession.java:121)
- com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:945)
- com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
- com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
- com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
- com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
- com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
- com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
- com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
- com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1706)
- com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1801)
- com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2946)
-[2024-05-21 09:06:22.359] [WARN ] [main] [org.apache.catalina.loader.WebappClassLoaderBase] [?] [?] - The web application [ROOT] appears to have started a thread named [Druid-ConnectionPool-Destroy-1043090763] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.lang.Thread.sleep(Native Method)
- com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:3020)
-[2024-05-21 09:06:22.361] [WARN ] [main] [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] [?] [?] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
-[2024-05-21 09:06:47.373] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
-[2024-05-21 09:06:47.373] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
-[2024-05-21 09:07:51.440] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:07:51.440] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:07:51.441] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:07:55.551] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
-[2024-05-21 09:08:35.767] [WARN ] [http-nio-33000-exec-4] [org.owasp.validator.html.Policy] [?] [?] - The directive "noopenerAndNoreferrerAnchors" is enabled by default, but disabled in this policy. It is recommended to leave it enabled to prevent reverse tabnabbing attacks.
-[2024-05-21 09:08:35.782] [WARN ] [http-nio-33000-exec-4] [org.owasp.validator.html.Policy] [?] [?] - The directive "noopenerAndNoreferrerAnchors" is enabled by default, but disabled in this policy. It is recommended to leave it enabled to prevent reverse tabnabbing attacks.
-[2024-05-21 09:08:35.790] [WARN ] [http-nio-33000-exec-4] [org.owasp.validator.html.Policy] [?] [?] - The directive "noopenerAndNoreferrerAnchors" is enabled by default, but disabled in this policy. It is recommended to leave it enabled to prevent reverse tabnabbing attacks.
-[2024-05-21 09:17:44.516] [WARN ] [SpringApplicationShutdownHook] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown
-[2024-05-21 09:18:03.321] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
-[2024-05-21 09:18:03.321] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
-[2024-05-21 09:19:15.437] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:19:15.438] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:19:15.438] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
-[2024-05-21 09:19:20.759] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
-[2024-05-21 09:21:06.008] [WARN ] [SpringApplicationShutdownHook] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown
+[2024-05-28 09:33:12.685] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 09:33:12.685] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 09:34:17.734] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:34:17.737] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:34:17.737] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:34:22.503] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 09:50:37.642] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 09:50:37.642] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 09:52:14.546] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:52:14.546] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:52:14.546] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 09:52:19.283] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:01:58.571] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 10:01:58.571] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 10:03:45.409] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:03:45.426] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:03:45.426] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:03:51.323] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:03:51.392] [WARN ] [main] [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] [?] [?] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 33000 is already in use
+[2024-05-28 10:03:51.500] [WARN ] [main] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown
+[2024-05-28 10:07:45.280] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 10:07:45.280] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 10:09:10.599] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:09:10.599] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:09:10.599] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:09:17.177] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:23:58.233] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 10:23:58.233] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 10:25:03.091] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:25:03.091] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:25:03.091] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:25:08.356] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:25:08.412] [WARN ] [main] [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] [?] [?] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 33000 is already in use
+[2024-05-28 10:25:08.494] [WARN ] [main] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown
+[2024-05-28 10:27:32.863] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 10:27:32.863] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 10:29:06.414] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:29:06.414] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:29:06.416] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:29:11.837] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:35:05.379] [WARN ] [main] [c.b.mybatisplus.core.metadata.TableInfoHelper] [?] [?] - Can not find table primary key in Class: "java.lang.Object".
+[2024-05-28 10:35:05.379] [WARN ] [main] [com.github.yulichang.injector.MPJSqlInjector] [?] [?] - class java.lang.Object ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+[2024-05-28 10:36:28.920] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到阿里云 OSS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:36:28.920] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到七牛云 Kodo 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:36:28.920] [WARN ] [main] [c.x.s.file.storage.FileStorageAutoConfiguration] [?] [?] - 检测到腾讯云 COS 配置，但是没有找到对应的依赖库，所以无法加载此存储平台！配置参考地址：https://spring-file-storage.xuyanwu.cn/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8
+[2024-05-28 10:36:33.652] [WARN ] [main] [com.xxl.job.core.executor.XxlJobExecutor] [?] [?] - >>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.
+[2024-05-28 10:36:33.696] [WARN ] [main] [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] [?] [?] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 3000 is already in use
+[2024-05-28 10:36:37.800] [WARN ] [main] [o.s.c.annotation.CommonAnnotationBeanPostProcessor] [?] [?] - Destroy method on bean with name 'idGeneratorConfig' threw an exception: org.springframework.dao.InvalidDataAccessApiUsageException: Redisson is shutdown; nested exception is org.redisson.RedissonShutdownException: Redisson is shutdown

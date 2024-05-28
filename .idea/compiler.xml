@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="4096" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jnpf-workflow-engine-biz" />
+        <module name="jnpf-visualdev-portal-controller" />
+        <module name="jnpf-workflow-engine-entity" />
+        <module name="jnpf-example-controller" />
+        <module name="jnpf-permission-controller" />
+        <module name="jnpf-visualdev-base-entity" />
+        <module name="jnpf-system-entity" />
+        <module name="jnpf-visualdev-onlinedev-entity" />
+        <module name="jnpf-extend-entity" />
+        <module name="jnpf-message-controller" />
+        <module name="jnpf-form-controller" />
+        <module name="jnpf-permission-entity" />
+        <module name="jnpf-gas-controller" />
+        <module name="jnpf-generater-base" />
+        <module name="jnpf-visualdev-portal-entity" />
+        <module name="jnpf-visualdev-integrate-biz" />
+        <module name="jnpf-workflow-engine-controller" />
+        <module name="jnpf-admin" />
+        <module name="jnpf-form-biz" />
+        <module name="jnpf-oauth-controller" />
+        <module name="jnpf-file-controller" />
+        <module name="jnpf-visualdev-generater-entity" />
+        <module name="jnpf-workflow-form-biz" />
+        <module name="jnpf-oauth-entity" />
+        <module name="jnpf-provider" />
+        <module name="jnpf-visualdev-base-biz" />
+        <module name="jnpf-app-controller" />
+        <module name="jnpf-visualdev-generater-biz" />
+        <module name="jnpf-visualdev-portal-biz" />
+        <module name="jnpf-visualdev-onlinedev-controller" />
+        <module name="jnpf-app-biz" />
+        <module name="jnpf-message-biz" />
+        <module name="jnpf-visualdata-controller" />
+        <module name="jnpf-visualdev-base-controller" />
+        <module name="jnpf-visualdev-onlinedev-biz" />
+        <module name="jnpf-oauth-api" />
+        <module name="jnpf-exception" />
+        <module name="jnpf-common-all" />
+        <module name="jnpf-workflow-form-controller" />
+        <module name="jnpf-workflow-form-entity" />
+        <module name="jnpf-app-entity" />
+        <module name="jnpf-oauth-biz" />
+        <module name="jnpf-visualdev-integrate-controller" />
+        <module name="jnpf-example-biz" />
+        <module name="jnpf-example-entity" />
+        <module name="jnpf-system-biz" />
+        <module name="jnpf-visualdev-integrate-entity" />
+        <module name="jnpf-scheduletask-biz" />
+        <module name="jnpf-system-controller" />
+        <module name="jnpf-gas-entity" />
+        <module name="jnpf-message-entity" />
+        <module name="jnpf-gas-biz" />
+        <module name="jnpf-file-entity" />
+        <module name="jnpf-visualdata-biz" />
+        <module name="jnpf-file-biz" />
+        <module name="jnpf-scheduletask-controller" />
+        <module name="jnpf-form-entity" />
+        <module name="jnpf-visualdata-entity" />
+        <module name="jnpf-permission-biz" />
+        <module name="jnpf-extend-controller" />
+        <module name="jnpf-extend-biz" />
+        <module name="jnpf-visualdev-generater-controller" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

@@ -2,7 +2,7 @@
 server:
   tomcat:
     uri-encoding: UTF-8 #tomcat编码
-  port: 33000 #tomcat端口
+  port: 33001 #tomcat端口
 
 spring:
   devtools: #spring开发者工具模块
